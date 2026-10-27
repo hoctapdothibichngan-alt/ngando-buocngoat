@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BƯỚC NGOẶT | Nhật Ký & Lưu Bút - Ngân Đỗ</title>
+    
+    <!-- Fonts: Lora cho nội dung mềm mại, Playfair cho tiêu đề sang trọng -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Lora', 'serif'], // Thay thế font mặc định thành Lora
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: '#881337', // Đỏ đô
+                        secondary: '#b45309', // Vàng đồng
+                        cream: '#fdfbf7', // Kem
+                        sand: '#f5f0e6', // Be nhạt
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for specific animations and styling -->
+    <style>
+        body {
+            background-color: #fdfbf7;
+            color: #292524;
+            line-height: 1.8;
+        }
+
+        /* Hero Background Gradient */
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(253,251,247,0.92) 0%, rgba(245,240,230,0.85) 100%), url('https://placehold.co/1920x1080/e7e5e4/a8a29e?text=Hanh+Trinh+Buoc+Ngoat') center/cover no-repeat fixed;
+        }
+
+        /* FAB Animation */
+        @keyframes ring {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(15deg); }
+            20% { transform: rotate(-15deg); }
+            30% { transform: rotate(15deg); }
+            40% { transform: rotate(-15deg); }
+            50% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .animate-ring:hover {
+            animation: ring 1s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        .pulse-bg::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            background-color: inherit;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            z-index: -1;
+        }
+
+        /* Fade-in up elements */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Quote styling */
+        .quote-icon {
+            opacity: 0.1;
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+        }
+
+        /* Custom Scrollbar for Textareas */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #d6d3d1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-white">
+
+    <!-- HERO SECTION -->
+    <header class="hero-bg min-h-screen flex flex-col justify-center relative px-6 py-20 text-center">
+        <div class="max-w-5xl mx-auto relative z-10 fade-up">
+            <span class="inline-block py-1.5 px-5 rounded-full bg-secondary/10 text-secondary font-semibold text-sm tracking-widest mb-6 border border-secondary/20 uppercase shadow-sm">
+                Ngân Đỗ | Phát triển kinh doanh & Thấu hiểu con người
+            </span>
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-stone-900 leading-tight mb-4">
+                BƯỚC NGOẶT: <br> 
+                <span class="text-3xl md:text-5xl text-primary font-serif italic font-normal mt-2 inline-block">Hành Trình Tự Đổi Mới Và Bứt Phá</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-stone-600 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                "Dám khác biệt để kiến tạo những giá trị trường tồn."
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#hanh-trinh" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-rose-900 transition-all duration-300 shadow-lg shadow-primary/30 hover:shadow-primary/50 hover:-translate-y-1">
+                    Khám phá chuyên luận <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-stone-400">
+            <i class="fa-solid fa-chevron-down opacity-50 animate-bounce"></i>
+        </div>
+    </header>
+
+    <!-- HÀNH TRÌNH BƯỚC NGOẶT (3 CỘT) -->
+    <section id="hanh-trinh" class="py-24 bg-white px-6">
+        <div class="max-w-7xl mx-auto fade-up">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="w-8 h-[1px] bg-secondary"></span>
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Góc nhìn chuyên sâu</span>
+                    <span class="w-8 h-[1px] bg-secondary"></span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-stone-900 mb-6">Tiến Trình Chuyển Đổi</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Cột 1 -->
+                <div class="bg-sand p-8 rounded-2xl border border-stone-100 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                    <div class="text-4xl text-stone-300 mb-6 font-serif font-bold group-hover:text-primary transition-colors">01.</div>
+                    <h3 class="font-serif text-2xl font-bold text-stone-900 mb-4">Tiền đề: <br>Đối mặt rào cản</h3>
+                    <p class="text-stone-600 leading-relaxed text-justify flex-1">
+                        Thương trường luôn tồn tại những quy luật vận hành khắc nghiệt. Việc neo giữ trong vùng an toàn, dù mang lại cảm giác bình ổn tạm thời, lại vô tình trở thành rào cản kìm hãm năng lực cốt lõi. Sự bế tắc trong tư duy quản trị truyền thống đặt ra yêu cầu cấp thiết về một sự chuyển dịch toàn diện, đòi hỏi người đứng đầu phải dũng cảm đối diện với những giới hạn của chính mình.
+                    </p>
+                </div>
+                <!-- Cột 2 -->
+                <div class="bg-stone-900 p-8 rounded-2xl border border-stone-800 shadow-xl shadow-stone-900/20 hover:-translate-y-2 transition-all duration-300 transform md:-translate-y-4 text-white group flex flex-col">
+                    <div class="text-4xl text-stone-700 mb-6 font-serif font-bold group-hover:text-secondary transition-colors">02.</div>
+                    <h3 class="font-serif text-2xl font-bold mb-4">Khoảnh khắc thức tỉnh: <br>Quyết định định hình tương lai</h3>
+                    <p class="text-stone-300 leading-relaxed text-justify flex-1">
+                        Bước ngoặt thực sự được định hình khi tư duy lối mòn bị phá vỡ. Chấp nhận rời bỏ bến đỗ an toàn, lựa chọn "dám khác biệt" – lấy sự thấu cảm làm kim chỉ nam trong điều hành và phát triển. Đây không đơn thuần là một quyết định mang tính cá nhân, mà là một chiến lược tái cấu trúc tư duy quản trị, hướng tới sự phát triển bền vững và nhân văn.
+                    </p>
+                </div>
+                <!-- Cột 3 -->
+                <div class="bg-sand p-8 rounded-2xl border border-stone-100 hover:shadow-xl transition-all duration-300 group flex flex-col">
+                    <div class="text-4xl text-stone-300 mb-6 font-serif font-bold group-hover:text-primary transition-colors">03.</div>
+                    <h3 class="font-serif text-2xl font-bold text-stone-900 mb-4">Thành tựu: <br>Lan tỏa giá trị từ sự thấu cảm</h3>
+                    <p class="text-stone-600 leading-relaxed text-justify flex-1">
+                        Thực tiễn chứng minh, giá trị cốt lõi không chỉ được đo lường bằng những chỉ số tăng trưởng cơ học, mà còn ở chiều sâu của sự gắn kết. Việc ứng dụng linh hoạt sự thấu cảm vào hệ thống quản trị đã kiến tạo nên một tập thể vững mạnh. Tại đó, mỗi cá nhân đều được khơi dậy tiềm năng, cống hiến tối đa và cộng hưởng tạo ra những giá trị trường tồn.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NHẬT KÝ BƯỚC NGOẶT (VĂN PHONG BÁO CHÍ) -->
+    <section id="nhat-ky" class="py-24 bg-stone-50 px-6 border-y border-stone-200">
+        <div class="max-w-4xl mx-auto fade-up">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="w-8 h-[1px] bg-secondary"></span>
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Chuyên mục</span>
+                    <span class="w-8 h-[1px] bg-secondary"></span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-stone-900 mb-4">Nhật Ký Bước Ngoặt</h2>
+                <p class="text-stone-600 text-lg">Phân tích chuyên sâu & Bài học quản trị thực tiễn.</p>
+            </div>
+
+            <article class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-md transition-shadow">
+                <div class="p-8 md:p-12">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="text-sm font-medium text-secondary bg-secondary/10 px-3 py-1 rounded-full">Tiêu điểm</span>
+                        <span class="text-sm text-stone-400"><i class="fa-regular fa-clock mr-2"></i>Cập nhật gần đây</span>
+                    </div>
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-stone-900 mb-6 leading-tight">
+                        Bài học từ sự thấu cảm trong quản trị nhân sự
+                    </h3>
+                    <div class="prose prose-stone max-w-none text-stone-600 space-y-4 mb-8 text-lg text-justify">
+                        <p>
+                            Trong bối cảnh nền kinh tế đối mặt với nhiều biến động phức tạp, bài toán nhân sự đang trở thành thách thức mang tính sống còn đối với mọi tổ chức. Thực tiễn vận hành doanh nghiệp chỉ ra rằng, cơ chế quản lý dựa trên mệnh lệnh một chiều truyền thống đang dần bộc lộ những điểm nghẽn nghiêm trọng, kìm hãm sức sáng tạo và tính chủ động của đội ngũ.
+                        </p>
+                        <p>
+                            Sự chuyển dịch sang mô hình <strong>"quản trị bằng sự thấu cảm"</strong> hiện nay không còn là một lựa chọn mang tính phong trào, mà đã trở thành xu hướng tất yếu. Người lãnh đạo xuất sắc là người biết hạ cái tôi cá nhân, đặt mình vào lăng kính của nhân sự để thấu hiểu những trăn trở, kỳ vọng và cả những giới hạn của họ. Trao quyền đi đôi với sự đồng hành; chấp nhận sai số trong khuôn khổ để dung dưỡng sự đổi mới sáng tạo – đó chính là nghệ thuật lãnh đạo đỉnh cao.
+                        </p>
+                        <p>
+                            Khi giá trị nhân bản được đặt làm trọng tâm của chiến lược phát triển, doanh nghiệp sẽ tự kiến tạo được một lợi thế cạnh tranh nội sinh vững chắc. Lòng trung thành và sự cống hiến tận tâm của nhân sự chính là quả ngọt đền đáp cho những người lãnh đạo dũng cảm gieo hạt mầm thấu cảm.
+                        </p>
+                        
+                        <div class="bg-sand p-6 rounded-xl border-l-4 border-secondary mt-8 italic text-stone-700 font-serif shadow-sm">
+                            "Đứng trước những ngã rẽ của sự nghiệp, góc nhìn quản trị của bạn đã thay đổi như thế nào? Quyết định mang tính bước ngoặt gần nhất của bạn là gì? Xin trân trọng kính mời quý độc giả để lại bình luận và cùng thảo luận tại Góc Độc Giả bên dưới."
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- HỆ SINH THÁI CỘNG ĐỒNG (GRID ĐẸP MẮT) -->
+    <section class="py-24 bg-cream px-6">
+        <div class="max-w-7xl mx-auto fade-up">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="w-8 h-[1px] bg-secondary"></span>
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Gắn kết & Phát triển</span>
+                    <span class="w-8 h-[1px] bg-secondary"></span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-stone-900 mb-6">Hệ Sinh Thái Cộng Đồng</h2>
+                <p class="text-stone-600 text-lg max-w-3xl mx-auto">
+                    Mạng lưới không gian giao lưu chuyên môn và chia sẻ triết lý sống. Kính mời quý vị tham gia vào các hệ sinh thái phù hợp để cùng kiến tạo những giá trị đa chiều.
+                </p>
+            </div>
+
+            <!-- Hàng 1: 3 Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col">
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="text-xs font-bold text-secondary mb-3 uppercase tracking-wider">Fanpage / Group</div>
+                        <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">Khi Ta Lớn</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#khitalon</span>
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#truongthanh</span>
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#chamelabenbinhyen</span>
+                        </div>
+                        <p class="text-stone-600 mb-6 leading-relaxed flex-1 text-sm text-justify">
+                            Góc nhìn chuyên sâu về hành trình trưởng thành, tháo gỡ những rào cản tâm lý tuổi trẻ và phương pháp kiến tạo bến đỗ bình yên cho gia đình.
+                        </p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 w-full bg-stone-50 border border-stone-200 hover:border-primary hover:text-primary text-stone-700 font-medium px-4 py-2.5 rounded-lg transition-colors duration-300 text-sm">
+                            <i class="fa-brands fa-facebook"></i> Tham gia ngay
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-stone-900 rounded-2xl shadow-lg border border-stone-800 overflow-hidden hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500 hover:-translate-y-1 flex flex-col">
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="text-xs font-bold text-primary mb-3 uppercase tracking-wider">Cộng đồng Chuyên môn</div>
+                        <h3 class="font-serif text-2xl font-bold text-white mb-2">Quản Trị Bằng Sự Thấu Cảm</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-[11px] bg-stone-800 text-stone-400 px-2 py-1 rounded">#quantribangsuthaucam</span>
+                        </div>
+                        <p class="text-stone-400 mb-6 leading-relaxed flex-1 text-sm text-justify">
+                            Không gian trao đổi nghiệp vụ dành cho giới lãnh đạo và quản lý. Phân tích thực tiễn nghệ thuật đắc nhân tâm và vận hành doanh nghiệp nhân văn.
+                        </p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 w-full bg-primary hover:bg-rose-800 text-white font-medium px-4 py-2.5 rounded-lg transition-colors duration-300 text-sm shadow-md">
+                            <strong class="font-sans text-xs">Zalo</strong> Tham gia Group
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col">
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="text-xs font-bold text-secondary mb-3 uppercase tracking-wider">Lối sống / Nhận thức</div>
+                        <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">Sống Trọn</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#songtron</span>
+                        </div>
+                        <p class="text-stone-600 mb-6 leading-relaxed flex-1 text-sm text-justify">
+                            Nơi lan tỏa triết lý sống tỉnh thức, hướng dẫn thực hành sự hiện diện trọn vẹn trong từng khoảnh khắc và duy trì trạng thái cân bằng nội tại.
+                        </p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 w-full bg-stone-50 border border-stone-200 hover:border-primary hover:text-primary text-stone-700 font-medium px-4 py-2.5 rounded-lg transition-colors duration-300 text-sm">
+                            <i class="fa-brands fa-facebook"></i> Theo dõi Fanpage
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hàng 2: 2 Cards căn giữa -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col">
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="text-xs font-bold text-secondary mb-3 uppercase tracking-wider">Tâm lý / Cảm xúc</div>
+                        <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">Đi Qua Những Sắc Màu</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#diquanhungsacmau</span>
+                        </div>
+                        <p class="text-stone-600 mb-6 leading-relaxed flex-1 text-sm text-justify">
+                            Lăng kính đa chiều về các cung bậc cảm xúc của con người. Giải phẫu tâm lý học ứng dụng nhằm nâng cao trí tuệ cảm xúc (EQ) trong giao tiếp.
+                        </p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 w-full bg-stone-50 border border-stone-200 hover:border-primary hover:text-primary text-stone-700 font-medium px-4 py-2.5 rounded-lg transition-colors duration-300 text-sm">
+                            <i class="fa-solid fa-users"></i> Tham gia Group
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col">
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="text-xs font-bold text-primary mb-3 uppercase tracking-wider">Góc nhìn Phản biện</div>
+                        <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">Điểm Lỡ Quản Trị</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#diemloquantri</span>
+                            <span class="text-[11px] bg-stone-100 text-stone-600 px-2 py-1 rounded">#case_study</span>
+                        </div>
+                        <p class="text-stone-600 mb-6 leading-relaxed flex-1 text-sm text-justify">
+                            Phân tích chuyên đề về những "điểm mù" và sai lầm chiến lược trong vận hành doanh nghiệp, đúc kết bài học kinh nghiệm qua các case-study thực tiễn.
+                        </p>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 w-full bg-stone-50 border border-stone-200 hover:border-primary hover:text-primary text-stone-700 font-medium px-4 py-2.5 rounded-lg transition-colors duration-300 text-sm">
+                            <strong class="font-sans text-xs">Zalo</strong> Tham gia Zalo Group
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TƯỜNG LƯU BÚT & FORM TÍCH HỢP -->
+    <section id="luu-but" class="py-24 bg-stone-900 px-6 text-white relative overflow-hidden border-t border-stone-800">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-secondary rounded-full blur-3xl opacity-20 translate-y-1/2 -translate-x-1/4"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10 fade-up">
+            <div class="text-center mb-16">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <span class="w-8 h-[1px] bg-secondary/50"></span>
+                    <span class="text-secondary font-semibold uppercase tracking-widest text-sm">Góc Độc Giả</span>
+                    <span class="w-8 h-[1px] bg-secondary/50"></span>
+                </div>
+                <h2 class="font-serif text-3xl md:text-5xl font-bold mb-4">Tường Lưu Bút & Khảo Sát</h2>
+                <p class="text-stone-400 text-lg max-w-2xl mx-auto">Nơi ghi nhận những ý kiến đóng góp, phản hồi chuyên môn và lưu giữ những câu chuyện chuyển đổi sâu sắc từ quý độc giả.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Cột Phản hồi (Hiển thị) -->
+                <div class="space-y-6">
+                    <h3 class="font-serif text-2xl font-bold mb-6 text-stone-200 border-b border-stone-700 pb-4">Phản Hồi Tiêu Biểu</h3>
+                    
+                    <div class="bg-stone-800/50 backdrop-blur-md p-6 rounded-xl border border-stone-700 relative hover:border-secondary transition-colors duration-300">
+                        <i class="fa-solid fa-quote-left absolute top-4 left-4 text-3xl text-stone-700 opacity-50"></i>
+                        <p class="text-stone-300 leading-relaxed mb-4 relative z-10 pl-8 text-sm text-justify">
+                            "Quan điểm quản trị bằng sự thấu cảm đã mở ra một hướng tiếp cận hoàn toàn mới cho hội đồng quản trị chúng tôi. Sự tinh tế và sắc bén trong việc nhận diện bản chất vấn đề nhân sự của chuyên gia là vô cùng đáng giá."
+                        </p>
+                        <div class="flex items-center gap-4 pl-8">
+                            <div class="w-10 h-10 rounded-full bg-stone-700 flex items-center justify-center font-serif font-bold text-secondary">H</div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Hoàng Nam</h4>
+                                <p class="text-xs text-stone-400">Giám đốc Khối Kinh Doanh</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary/10 backdrop-blur-md p-6 rounded-xl border border-primary/30 relative hover:border-primary transition-colors duration-300">
+                        <i class="fa-solid fa-quote-left absolute top-4 left-4 text-3xl text-primary/20 opacity-50"></i>
+                        <p class="text-stone-200 leading-relaxed mb-4 relative z-10 pl-8 text-sm text-justify">
+                            "Tính khách quan và thực tiễn trong các bài phân tích tại 'Điểm Lỡ Quản Trị' mang lại giá trị tham khảo cao. Một ngòi bút chuyên môn sắc sảo nhưng không kém phần nhân văn."
+                        </p>
+                        <div class="flex items-center gap-4 pl-8">
+                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-serif font-bold text-white">T</div>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Thanh Tuyền</h4>
+                                <p class="text-xs text-stone-400">CEO / Đối tác chiến lược</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cột Form Liên Hệ -->
+                <div>
+                    <div class="bg-white text-stone-900 rounded-2xl p-8 shadow-2xl">
+                        <h3 class="font-serif text-2xl font-bold mb-2">Kết Nối & Gửi Lời Nhắn</h3>
+                        <p class="text-stone-600 text-sm mb-6 pb-6 border-b border-stone-200">
+                            * Thông tin của quý vị được bảo mật và tự động đồng bộ hóa qua hệ thống <strong>Telegram / Google Sheets</strong> của ban quản trị nhằm đảm bảo tiến độ phản hồi nhanh nhất.
+                        </p>
+
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-stone-700 mb-1">Họ và Tên / Chức vụ</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg bg-stone-50 border border-stone-200 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all font-sans text-sm" placeholder="VD: Nguyễn Văn A - CEO">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-stone-700 mb-1">Số điện thoại / Zalo liên hệ</label>
+                                <input type="tel" id="phone" required class="w-full px-4 py-3 rounded-lg bg-stone-50 border border-stone-200 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all font-sans text-sm" placeholder="09xx.xxx.xxx">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-stone-700 mb-1">Nội dung trao đổi / Cảm nhận</label>
+                                <textarea id="message" required rows="4" class="w-full px-4 py-3 rounded-lg bg-stone-50 border border-stone-200 focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:border-secondary transition-all font-sans text-sm" placeholder="Ghi chú nội dung cần phản hồi..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-stone-900 text-white font-medium py-3 rounded-lg hover:bg-primary transition-colors duration-300 flex justify-center items-center gap-2">
+                                <span>Gửi Thông Tin</span> <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 py-8 text-center text-stone-500 border-t border-stone-800 text-sm">
+        <p class="font-serif text-stone-400 mb-1 tracking-wider">BƯỚC NGOẶT | NGÂN ĐỖ</p>
+        <p>© 2026. Dám khác biệt để kiến tạo những giá trị trường tồn.</p>
+    </footer>
+
+    <!-- FLOATING ACTION BUTTONS (GỌI ĐIỆN & ZALO) -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-50">
+        <!-- Zalo Button -->
+        <a href="https://zalo.me/0902652225" target="_blank" rel="noopener noreferrer" class="relative group">
+            <div class="w-12 h-12 md:w-14 md:h-14 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl md:text-2xl shadow-lg hover:-translate-y-1 transition-transform duration-300 animate-ring pulse-bg relative z-10">
+                <strong class="font-sans text-[10px] md:text-xs absolute mt-1">Zalo</strong>
+            </div>
+            <!-- Tooltip -->
+            <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-stone-800 px-3 py-1 rounded shadow-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Zalo: 0902.652.225
+            </span>
+        </a>
+
+        <!-- Phone Button -->
+        <a href="tel:0902652225" class="relative group">
+            <div class="w-12 h-12 md:w-14 md:h-14 bg-primary text-white rounded-full flex items-center justify-center text-xl md:text-2xl shadow-lg shadow-primary/40 hover:-translate-y-1 transition-transform duration-300 animate-ring relative z-10" style="animation-delay: 0.5s;">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <!-- Tooltip -->
+            <span class="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white text-stone-800 px-3 py-1 rounded shadow-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                Hotline: 0902.652.225
+            </span>
+        </a>
+    </div>
+
+    <!-- Custom Modal for Form Submission Success -->
+    <div id="successModal" class="fixed inset-0 z-[60] bg-stone-900/60 backdrop-blur-sm hidden items-center justify-center px-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-stone-900 mb-2">Đã gửi Lưu Bút!</h3>
+            <p class="text-stone-600 mb-6">Cảm ơn bạn đã chia sẻ lời nhắn. Chị Ngân sẽ đọc được ngay trên điện thoại và có thể chọn để hiển thị lên Tường Lưu Bút.</p>
+            <button onclick="closeModal()" class="bg-primary text-white px-8 py-2 rounded-full font-medium hover:bg-rose-900 transition-colors">Đóng lại</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Handling -->
+    <script>
+        // Intersection Observer for scroll fade-up animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.fade-up');
+            elementsToAnimate.forEach(el => observer.observe(el));
+        });
+
+        // Chức năng chia sẻ mạng xã hội
+        function shareSocial(platform) {
+            const currentUrl = encodeURIComponent(window.location.href);
+            if(platform === 'facebook') {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`, '_blank', 'width=600,height=400');
+            } else if (platform === 'zalo') {
+                // Fallback Zalo Share Link
+                window.open(`https://zalo.me/share?url=${currentUrl}`, '_blank');
+            }
+        }
+
+        // Xử lý gửi Form & Tích hợp Telegram Bot
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalBtnHtml = btn.innerHTML;
+            
+            // UI Loading state
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Đang gửi...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            // Lấy dữ liệu form
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message').value;
+
+            // ==========================================
+            // THIẾT LẬP TELEGRAM BOT Ở ĐÂY
+            // Hướng dẫn: 
+            // 1. Tạo bot trên Telegram qua BotFather, lấy Token.
+            // 2. Lấy Chat ID của bạn (qua bot userinfobot).
+            // 3. Thay thế vào 2 biến dưới đây.
+            // ==========================================
+            const BOT_TOKEN = 'PLACEHOLDER_BOT_TOKEN'; // Ví dụ: '123456789:ABCdefGhIJKlmNoPQRstuVWXyz'
+            const CHAT_ID = 'PLACEHOLDER_CHAT_ID';     // Ví dụ: '987654321'
+            
+            // Nội dung tin nhắn gửi về Telegram
+            const text = `🌟 BƯỚC NGOẶT BLOG - LƯU BÚT MỚI 🌟\n\n👤 Người gửi: ${name}\n📞 SĐT/Zalo: ${phone}\n💬 Lời nhắn: \n${message}`;
+
+            try {
+                // Nếu đã điền Token thật, thực thi gọi API
+                if(BOT_TOKEN !== 'PLACEHOLDER_BOT_TOKEN') {
+                    const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+                    await fetch(telegramUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: CHAT_ID,
+                            text: text
+                        })
+                    });
+                } else {
+                    // Nếu chưa có Token (chạy demo), giả lập thời gian trễ mạng
+                    await new Promise(resolve => setTimeout(resolve, 1200));
+                    console.log("Đã mô phỏng gửi dữ liệu về Telegram:", {name, phone, message});
+                }
+
+                // Thành công: Hiển thị Modal thông báo
+                showSuccessModal();
+                form.reset();
+
+            } catch (error) {
+                console.error("Lỗi khi gửi lưu bút:", error);
+                alert("Xin lỗi, có lỗi xảy ra khi gửi kết nối. Vui lòng thử gọi điện trực tiếp!");
+            } finally {
+                // Khôi phục trạng thái nút bấm
+                btn.innerHTML = originalBtnHtml;
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+            }
+        }
+
+        function showSuccessModal() {
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            const content = document.getElementById('modalContent');
+            
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
